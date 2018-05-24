@@ -36,9 +36,6 @@ class LandmarksController < ApplicationController
  post '/landmarks/:id' do
    @landmark = Landmark.find_by_id(params[:id])
    @landmark.update(params["landmark"])
-   title = Title.find_or_create_by(name: params["title"]["name"])
-   @landmark.title = title
-   @landmark.figure_ids = params["figures"]
    @landmark.save
    erb :show
  end
