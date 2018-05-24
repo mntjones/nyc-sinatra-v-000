@@ -24,10 +24,23 @@ class LandmarksController < ApplicationController
  end
  
  get "/landmarks/:id" do
-   binding.pry
-  @landmark = Landmark.find_by_id(:id)
-  
+  @landmark = Landmark.find_by_id(params[:id])
   erb :show
+ end
+ 
+ get '/landmarks/:id/edit' do
+   @landmark = Landmark.find_by_id(params[:id])
+   erb :edit
+ end
+ 
+ post '/landmarks/:id' do
+   @landmark = Landmark.find_by_id(params[:id])
+   @landmark.update(params["landmark"])
+   title = Title.find_or_create_by(name: params["title"]["name"])
+   @landmark.title = title
+   @landmark.figure_ids = params["figures"]
+   @landmark.save
+   erb :show
  end
  
 end
