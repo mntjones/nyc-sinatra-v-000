@@ -1,0 +1,6 @@
+<h1>List of Landmarks</h1>
+
+<% @landmarks.each.with_index do |land, i| %>
+  <% index = i + 1 %>
+  <%= "#{index}. #{land.name} - #{land.year_completed}" %>
+<% end %>
