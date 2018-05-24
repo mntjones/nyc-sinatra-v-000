@@ -5,7 +5,9 @@
   <input type="text" name="landmark[name]" id="landmark_name">
 
   <label>Titles</label>
-  
+  <% Title.all.each do |title| %>
+    <input type="checkbox" name="titles[]" id="<%= title.name %>" value="<%= title.id %>"><%= title.name %></input>
+  <% end %>
   
   <input type="submit" value="Create New Figure">
 
