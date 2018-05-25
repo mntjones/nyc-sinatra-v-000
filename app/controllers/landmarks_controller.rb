@@ -9,17 +9,12 @@ class LandmarksController < ApplicationController
  end
 
  get '/landmarks/new' do
-   
    erb :new
  end
  
  post '/landmarks' do
    @landmark = Landmark.create(params["landmark"])
-   title = Title.find_or_create_by(name: params["title"]["name"])
-   @landmark.title = title
-   @landmark.figure_ids = params["figures"]
    @landmark.save
-   
    erb :show
  end
  

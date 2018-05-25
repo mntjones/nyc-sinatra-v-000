@@ -1,6 +1,6 @@
-<h1>List of Landmarks</h1>
+<h1>List of Figures</h1>
 
-<% @landmarks.each.with_index do |land, i| %>
+<% @figures.each.with_index do |fig, i| %>
   <% index = i + 1 %>
-  <%= "#{index}. #{land.name} - #{land.year_completed}" %>
+  <%= "#{index}. #{fig.name}" %>
 <% end %>
