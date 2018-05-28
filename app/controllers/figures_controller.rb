@@ -48,6 +48,8 @@ class FiguresController < ApplicationController
 
    get '/figures/:id/edit' do
      @figure = Figure.find_by_id(params[:id])
+     @landmarks = Landmark.all
+     @titles = Title.all
      erb :edit
    end
 
