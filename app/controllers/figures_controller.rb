@@ -71,7 +71,7 @@ class FiguresController < ApplicationController
          @figure.titles << title
        end
      end
-
+     binding.pry
      @landmark_ids = params["figure"]["landmark_ids"]
      if !params["landmark"]["name"].empty?
        @figure.landmarks << Landmark.create(name: params["landmark"]["name"])
