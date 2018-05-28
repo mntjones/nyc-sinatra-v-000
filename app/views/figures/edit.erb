@@ -3,7 +3,7 @@
 <form action="/figures/<%= @figure.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Name</label>
-  <input type="text" name="figure[name]" id="figure_name" value="<%= figure.name %>">
+  <input type="text" name="figure[name]" id="figure_name" value="<%= @figure.name %>">
 
   <br>
   <label>Titles: </label>
