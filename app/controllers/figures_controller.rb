@@ -84,7 +84,7 @@ class FiguresController < ApplicationController
          @figure.landmarks << landmark
        end
      end
-     binding.pry
+
      @figure.save
      erb :show
     end
