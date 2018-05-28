@@ -6,7 +6,11 @@
   </tr>
   <tr>
     <td><%= @figure.name %></td>
-    <td><%= @figure.titles %></td>
-    <td><%= @figure.landmarks %></td>
+    <% @figure.titles.each do |title| %>
+          <td><%= title.name %></td>
+    <% end %>
+    <% @figure.landmarks.each do |land| %>
+          <td><%= land.name %></td>
+    <% end %>
   </tr>
 <table>
