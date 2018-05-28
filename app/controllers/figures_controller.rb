@@ -47,11 +47,6 @@ class FiguresController < ApplicationController
      erb :show
    end
 
-   get "/figures/:id" do
-    @figure = Figure.find_by_id(params[:id])
-    erb :show
-   end
-
    get '/figures/:id/edit' do
      @figure = Figure.find_by_id(params[:id])
      erb :edit
@@ -91,4 +86,10 @@ class FiguresController < ApplicationController
      @figure.save
      erb :show
     end
+
+    get "/figures/:id" do
+     @figure = Figure.find_by_id(params[:id])
+     erb :show
+    end
+
  end
