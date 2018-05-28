@@ -1,13 +1,14 @@
 <h1>Update a Figure</h1>
 
 <form action="/figures/<%= @figure.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Name</label>
   <input type="text" name="figure[name]" id="figure_name" value="<%= figure.name %>">
 
   <br>
   <label>Titles: </label>
   <p>Choose a title: </p><br>
-  <% @titles.each do |title| %>
+  <% Title.all.each do |title| %>
     <input type="checkbox" name="figure[title_ids][]" id="title_<%= title.id %>" value="<%= title.id %>"<%='checked' if @figure.title_ids.include?(title) %>><%= title.name %><br></input>
   <% end %>
   <br>
@@ -17,7 +18,7 @@
 
   <label>Landmarks: </label>
   <p>Choose a landmark: </p><br>
-  <% @landmarks.each do |land| %>
+  <% Landmark.all.each do |land| %>
     <input type="checkbox" name="figure[landmark_ids][]" id="landmark_<%= land.id %>" value="<%= land.id %>"<%='checked' if @figure.landmark_ids.include?(land) %>><%= land.name %><br></input>
   <% end %>
   <br>
