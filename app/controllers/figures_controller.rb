@@ -60,10 +60,7 @@ class FiguresController < ApplicationController
      @figure.name = params["figure"]["name"]
 
      @title_ids = params["figure"]["title_ids"]
-     if !params["title"]["name"].empty?
-       @figure.titles << Title.create(name: params["title"]["name"])
-     end
-
+     
      if @title_ids
        @figure.titles.clear
        @title_ids.each do |id|
@@ -71,11 +68,11 @@ class FiguresController < ApplicationController
          @figure.titles << title
        end
      end
-     binding.pry
-     @landmark_ids = params["figure"]["landmark_ids"]
-     if !params["landmark"]["name"].empty?
-       @figure.landmarks << Landmark.create(name: params["landmark"]["name"])
+     if !params["title"]["name"].empty?
+       @figure.titles << Title.create(name: params["title"]["name"])
      end
+
+     @landmark_ids = params["figure"]["landmark_ids"]
 
      if @landmark_ids
        @figure.landmarks.clear
@@ -83,6 +80,10 @@ class FiguresController < ApplicationController
          landmark = Landmark.find_by_id(id)
          @figure.landmarks << landmark
        end
+     end
+
+     if !params["landmark"]["name"].empty?
+       @figure.landmarks << Landmark.create(name: params["landmark"]["name"])
      end
 
      @figure.save
