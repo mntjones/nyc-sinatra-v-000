@@ -59,6 +59,7 @@ class FiguresController < ApplicationController
 
    post '/figures/:id' do
      @figure = Figure.find_by_id(params[:id])
+     
      @figure.update(name: params["figure"]["name"])
 
      @title_ids = params["figure"]["title_ids"]
