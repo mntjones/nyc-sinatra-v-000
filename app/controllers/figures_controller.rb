@@ -68,6 +68,7 @@ class FiguresController < ApplicationController
      end
 
      if @title_ids
+       @figure.titles.clear
        @title_ids.each do |id|
          title = Title.find_by_id(id)
          @figure.titles << title
@@ -80,6 +81,7 @@ class FiguresController < ApplicationController
      end
 
      if @landmark_ids
+       @figure.landmarks.clear
        @landmark_ids.each do |id|
          landmark = Landmark.find_by_id(id)
          @figure.landmarks << landmark
