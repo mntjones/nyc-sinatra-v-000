@@ -50,7 +50,6 @@ class FiguresController < ApplicationController
      @figure = Figure.find_by_id(params[:id])
      @landmarks = Landmark.all
      @titles = Title.all
-     binding.pry
      erb :edit
    end
 
