@@ -43,49 +43,56 @@ class FiguresController < ApplicationController
        end
      end
      @figure.save
-
      erb :show
-   end
-
-   get "/figures/:id" do
-    @figure = Figure.find_by_id(params[:id])
-    erb :show
    end
 
    get '/figures/:id/edit' do
      @figure = Figure.find_by_id(params[:id])
+     @landmarks = Landmark.all
+     @titles = Title.all
      erb :edit
    end
 
    post '/figures/:id' do
+
      @figure = Figure.find_by_id(params[:id])
-     @figure.update(name: params["figure"]["name"])
+
+     @figure.name = params["figure"]["name"]
 
      @title_ids = params["figure"]["title_ids"]
-     if !params["title"]["name"].empty?
-       @figure.titles << Title.create(name: params["title"]["name"])
-     end
-
+     
      if @title_ids
+       @figure.titles.clear
        @title_ids.each do |id|
          title = Title.find_by_id(id)
          @figure.titles << title
        end
      end
-
-     @landmark_ids = params["figure"]["landmark_ids"]
-     if !params["landmark"]["name"].empty?
-       @figure.landmarks << Landmark.create(name: params["landmark"]["name"])
+     if !params["title"]["name"].empty?
+       @figure.titles << Title.create(name: params["title"]["name"])
      end
 
+     @landmark_ids = params["figure"]["landmark_ids"]
+
      if @landmark_ids
+       @figure.landmarks.clear
        @landmark_ids.each do |id|
          landmark = Landmark.find_by_id(id)
          @figure.landmarks << landmark
        end
      end
 
+     if !params["landmark"]["name"].empty?
+       @figure.landmarks << Landmark.create(name: params["landmark"]["name"])
+     end
+
      @figure.save
      erb :show
     end
+
+    get "/figures/:id" do
+     @figure = Figure.find_by_id(params[:id])
+     erb :show
+    end
+
  end
